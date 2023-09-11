@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" type="text/css" href="1.css">
+</head>
+<body style="background-color: blueviolet;" >
+  <center><h1>Rock Paper Scissors</h1></center>
+  <div id="scores">
+    <div id="user-score" class="d1">Your Score: 0</div>
+    <div id="computer-score" class="d2">Computer Score: 0</div>
+  </div>
+  <center>
+  <div id="choices">
+
+    <img src="3.png" alt="Rock" id="rock-img" class="a" onclick="play('rock')" />
+    <img src="2.png" alt="Paper" id="paper-img"  class="a" onclick="play('paper')" />
+    <img src="1.png" alt="Scissors" id="scissors-img"  class="a" onclick="play('scissors')" />
+  </div>
+  <div>
+    <br>
+    <button id="rock-button"  onclick="play('rock')"><b>ROCK</b></button>
+    <button id="paper-button" onclick="play('paper')"><b>PAPER</b></button>
+    <button id="scissors-button" onclick="play('scissors')"><b>SCISSORS</b></button>
+  </div>
+  <div id="result"></div>
+</center>
+
+  <script>
+    let userScore = 0;
+    let computerScore = 0;
+
+    const choices = ["rock", "paper", "scissors"];
+
+    function computerChoice() {
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      return choices[randomIndex];
+    }
+
+    function play(userChoice) {
+      const computer = computerChoice();
+      highlightComputerChoice(computer); 
+      const result = determineWinner(userChoice, computer);
+      updateScore(result);
+      displayResult(userChoice, computer, result);
+    }
+
+    function highlightComputerChoice(choice) {
+      
+      const previousComputerChoice = document.querySelector(".computer-choice");
+      if (previousComputerChoice) {
+        previousComputerChoice.classList.remove("computer-choice");
+      }
+
+      
+      const computerChoiceElement = document.getElementById(`${choice}-img`);
+      if (computerChoiceElement) {
+        computerChoiceElement.classList.add("computer-choice");
+      }
+    }
+
+    function determineWinner(user, computer) {
+      if (user === computer) {
+        return "It's a tie!";
+      } else if (
+        (user === "rock" && computer === "scissors") ||
+        (user === "paper" && computer === "rock") ||
+        (user === "scissors" && computer === "paper")
+      ) {
+        return "You win!";
+      } else {
+        return "Computer wins!";
+      }
+    }
+
+    function updateScore(result) {
+      const userScoreElement = document.getElementById("user-score");
+      const computerScoreElement = document.getElementById("computer-score");
+
+      if (result === "You win!") {
+        userScore++;
+      } else if (result === "Computer wins!") {
+        computerScore++;
+      }
+
+      userScoreElement.textContent = `Your Score: ${userScore}`;
+      computerScoreElement.textContent = `Computer Score: ${computerScore}`;
+    }
+
+    function displayResult(user, computer, result) {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `You chose ${user}, computer chose ${computer}. ${result}`;
+    }
+  </script>
+</body>
+</html>

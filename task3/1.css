@@ -1,0 +1,47 @@
+
+button {
+      cursor: pointer;
+      margin: 10px;
+      height: 50px;
+      width:250px;
+      border-radius: 20px;
+      border-color: white;
+      border: 4px solid white;
+      background-color: blueviolet;
+      color: white;
+    }
+button:hover {
+  background-color: white;
+  color: blueviolet; 
+  cursor: pointer;
+  width: 270px; 
+}
+
+.computer-choice {
+  border: 6px solid red;
+}
+
+#scores {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+}h1{
+  color: white;
+}
+.d1{
+  color: white;
+}
+.d2{
+  color: white;
+}
+.a{
+  height: 300px;
+  width: 300px;
+}
+.b{
+  width: 100px;
+}
+#result{
+  color: white;
+}
